@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="navigation">
+    <ul class="breadcrumb">
+      <li>
+        <%= link_to "Home", root_path %>
+      </li>
+      <li>
+        <%= link_to "Qualifications", qualifications_path %>
+      </li>
+      <li class="active">
+        <%= @data["name"] %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <table class="table">
+    <% unless @data.blank? %>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Colour</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% unless @data["subjects"].blank? %>
+          <% @data["subjects"].each do |subject| %>
+            <tr style="background: <%= subject['colour']%>">
+              <td><%= subject["name"] %></td>
+              <td><%= subject["colour"] %> </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="2" align="center">
+              <p class="bg-danger">No subjects for Qualification - <%= @data["name"] %></p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <tbody>
+        <tr>
+          <td colspan="2" align="center">
+            <p class="bg-danger">Sorry Something went wrong!</p>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

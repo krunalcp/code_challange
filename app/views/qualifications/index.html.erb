@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="navigation">
+    <ul class="breadcrumb">
+      <li>
+        <%= link_to "Home", root_path %>
+      </li>
+      <li class="active">
+        Qualifications
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Country Name</th>
+        <th># Subjects</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @qualifications.each do |qualification| %>
+        <tr>
+          <td><%= link_to qualification["name"], qualification_path(qualification["id"]) %> </td>
+          <td><%= qualification["country"]["name"]  rescue '' %></td>
+          <td><%= qualification["subjects"].count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
